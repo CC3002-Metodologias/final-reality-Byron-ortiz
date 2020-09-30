@@ -32,8 +32,8 @@ public abstract class  AbstractMageCharacter extends AbstractPlayerCharacter {
      * @param mana
      *     mage's energy to summon spells
      */
-    protected Spell equippedSpell = null;
-    protected int mana;
+    private Spell equippedSpell = null;
+    private int mana;
 
     public AbstractMageCharacter(@NotNull String name, int healthPoints, int defensePoints,
                                  @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon,
@@ -46,18 +46,31 @@ public abstract class  AbstractMageCharacter extends AbstractPlayerCharacter {
     @Override
     public abstract String getCharacterClass();
 
+    /**
+     * returns the character's equippedSpell
+     */
     public Spell getEquippedSpell() {
         return equippedSpell;
     }
-
+    /**
+     * equips a spell to some mage character (i think this method will change in the future
+     * because of the limitations of every mage to equip spells of
+     * different types, but i dont know how to do it right now)
+     */
     public void equipSpell(Spell equippedSpell) {
         this.equippedSpell = equippedSpell;
     }
 
+    /**
+     * returns the character's mana
+     */
     public int getMana() {
-        return mana;
+        return this.mana;
     }
 
+    /**
+     * resets the character's mana
+     */
     public void setMana(int mana) {
         this.mana = mana;
     }

@@ -14,10 +14,6 @@ public interface ICharacter {
    */
   String getName();
 
-  /**
-   * Adds this character to the turns queue.
-   */
-  protected void addToQueue();
 
   /**
    * Returns this character's HP.
@@ -27,4 +23,9 @@ public interface ICharacter {
    * Sets this character's HP.
    */
   void setHealthPoints(int healthPoints);
+
+  /**
+   * We should add some methods that every character should do like  atk, walk, etc.
+   */
+
 }
