@@ -1,6 +1,6 @@
 package com.github.cc3002.finalreality.model.character;
 
-import com.github.cc3002.finalreality.model.weapon.Weapon;
+import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.BlockingQueue;
@@ -15,7 +15,7 @@ public class KnightCharacter extends AbstractPlayerCharacter {
 
     public KnightCharacter(@NotNull String name, int healthPoints,
                            int defensePoints, @NotNull BlockingQueue<ICharacter> turnsQueue,
-                           Weapon weapon) {
+                           AbstractWeapon weapon) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
     }
 

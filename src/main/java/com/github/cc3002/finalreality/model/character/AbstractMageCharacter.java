@@ -1,7 +1,7 @@
 package com.github.cc3002.finalreality.model.character;
 
 
-import com.github.cc3002.finalreality.model.weapon.Weapon;
+import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.BlockingQueue;
@@ -36,7 +36,7 @@ public abstract class  AbstractMageCharacter extends AbstractPlayerCharacter {
     protected int mana;
 
     public AbstractMageCharacter(@NotNull String name, int healthPoints, int defensePoints,
-                                 @NotNull BlockingQueue<ICharacter> turnsQueue, Weapon weapon,
+                                 @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon,
                                  Spell equippedSpell, int mana) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
         this.equippedSpell = equippedSpell;

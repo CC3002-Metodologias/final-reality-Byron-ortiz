@@ -1,14 +1,10 @@
 package com.github.cc3002.finalreality.model.character;
 
-import com.github.cc3002.finalreality.model.character.AbstractCharacter;
-import com.github.cc3002.finalreality.model.character.ICharacter;
-import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import com.github.cc3002.finalreality.model.character.player.CharacterClass;
-import com.github.cc3002.finalreality.model.weapon.Weapon;
+import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -33,21 +29,21 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter {
    * @param equippedWeapon
    * character's equipped weapon
    */
-  protected Weapon equippedWeapon = null;
+  protected AbstractWeapon equippedWeapon = null;
 
   public AbstractPlayerCharacter(@NotNull String name, int healthPoints, int defensePoints,
-                                 @NotNull BlockingQueue<ICharacter> turnsQueue, Weapon weapon) {
+                                 @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon) {
     super(turnsQueue, name, healthPoints, defensePoints);
     this.equippedWeapon = weapon;
   }
 
   public abstract String getCharacterClass();
 
-  public Weapon getEquippedWeapon() {
+  public AbstractWeapon getEquippedWeapon() {
     return this.equippedWeapon;
   }
 
-  public void equipWeapon(Weapon weapon) {
+  public void equipWeapon(AbstractWeapon weapon) {
     this.equippedWeapon = weapon;
   }
 
