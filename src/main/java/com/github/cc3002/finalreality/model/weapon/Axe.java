@@ -11,8 +11,4 @@ public class Axe extends AbstractNormalWeapon {
         return "Axe";
     }
 
-    @Override
-    protected int getDamage() {
-        return this.damage;
-    }
 }

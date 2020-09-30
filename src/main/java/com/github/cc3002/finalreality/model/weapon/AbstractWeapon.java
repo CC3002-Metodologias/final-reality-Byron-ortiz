@@ -10,11 +10,11 @@ import java.util.Objects;
  */
 public abstract class AbstractWeapon implements IWeapon {
 
-  protected final String name;
-  protected final int weight;
+  private final String name;
+  private final int weight;
 
   /**
-   * Class that holds the properties for a weapon with a name, a base damage and speed.
+   * Class that holds the properties for a weapon with a name and weight.
    *
    */
   public AbstractWeapon(final String name, final int weight) {
@@ -30,6 +30,7 @@ public abstract class AbstractWeapon implements IWeapon {
     return this.weight;
   }
 
+  @Override
   public abstract String getType();
 
 

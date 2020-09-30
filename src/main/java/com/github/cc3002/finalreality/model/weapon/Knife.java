@@ -6,11 +6,6 @@ public class Knife extends AbstractNormalWeapon {
     }
 
     @Override
-    protected int getDamage() {
-        return this.damage;
-    }
-
-    @Override
     public String getType() {
         return "Knife";
     }

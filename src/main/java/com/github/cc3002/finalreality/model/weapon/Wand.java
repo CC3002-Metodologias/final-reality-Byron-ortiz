@@ -6,11 +6,6 @@ public class Wand extends AbstractMagicWeapon {
     }
 
     @Override
-    protected int getMagicDamage() {
-        return this.magicDamage;
-    }
-
-    @Override
     public String getType() {
         return "Wand";
     }

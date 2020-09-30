@@ -6,11 +6,6 @@ public class Bow extends AbstractNormalWeapon {
     }
 
     @Override
-    protected int getDamage() {
-        return this.damage;
-    }
-
-    @Override
     public String getType() {
         return "Bow";
     }

@@ -6,10 +6,6 @@ public class Sword extends AbstractNormalWeapon {
         super(name, weight, damage);
     }
 
-    @Override
-    protected int getDamage() {
-        return this.damage;
-    }
 
     @Override
     public String getType() {
