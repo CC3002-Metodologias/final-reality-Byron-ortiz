@@ -8,15 +8,9 @@ import com.github.cc3002.finalreality.model.weapon.Weapon;
  * A character can be controlled by the player or by the CPU (an enemy).
  *
  * @author Ignacio Slater Muñoz.
- * @author <Your name>
+ * @author <Byron Ortiz>
  */
 public interface ICharacter {
-
-  /**
-   * Sets a scheduled executor to make this character (thread) wait for {@code speed / 10}
-   * seconds before adding the character to the queue.
-   */
-  void waitTurn();
 
   /**
    * Returns this character's name.
@@ -24,17 +18,16 @@ public interface ICharacter {
   String getName();
 
   /**
-   * Equips a weapon to the character.
+   * Adds this character to the turns queue.
    */
-  void equip(Weapon weapon);
+  protected void addToQueue();
 
   /**
-   * Return this character's equipped weapon.
+   * Returns this character's HP.
    */
-  Weapon getEquippedWeapon();
-
+  public int getHealthPoints();
   /**
-   * Returns this character's class.
+   * Sets this character's HP.
    */
-  CharacterClass getCharacterClass();
+  void setHealthPoints(int healthPoints);
 }
