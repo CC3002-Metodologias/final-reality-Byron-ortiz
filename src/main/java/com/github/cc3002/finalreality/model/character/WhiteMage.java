@@ -11,10 +11,10 @@ import java.util.concurrent.BlockingQueue;
  * @author Ignacio Slater Muñoz
  * @author <Byron Ortiz>
  */
-public class WhiteMageCharacter extends AbstractMageCharacter {
-    public WhiteMageCharacter(@NotNull String name, int healthPoints, int defensePoints,
-                              @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon,
-                              Spell equippedSpell, int mana) {
+public class WhiteMage extends AbstractMageCharacter {
+    public WhiteMage(@NotNull String name, int healthPoints, int defensePoints,
+                     @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon,
+                     Spell equippedSpell, int mana) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon, equippedSpell, mana);
     }
 

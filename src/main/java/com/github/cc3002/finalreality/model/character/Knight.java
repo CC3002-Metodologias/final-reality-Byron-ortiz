@@ -11,11 +11,11 @@ import java.util.concurrent.BlockingQueue;
  * @author Ignacio Slater Muñoz
  * @author <Byron Ortiz>
  */
-public class KnightCharacter extends AbstractPlayerCharacter {
+public class Knight extends AbstractPlayerCharacter {
 
-    public KnightCharacter(@NotNull String name, int healthPoints,
-                           int defensePoints, @NotNull BlockingQueue<ICharacter> turnsQueue,
-                           AbstractWeapon weapon) {
+    public Knight(@NotNull String name, int healthPoints,
+                  int defensePoints, @NotNull BlockingQueue<ICharacter> turnsQueue,
+                  AbstractWeapon weapon) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
     }
 

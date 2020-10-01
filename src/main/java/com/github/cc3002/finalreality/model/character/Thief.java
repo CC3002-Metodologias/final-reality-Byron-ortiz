@@ -6,19 +6,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * A class that holds all the information of a Thieve character of the game.
+ * A class that holds all the information of a Thief character of the game.
  *
  * @author Ignacio Slater Muñoz
  * @author <Byron Ortiz>
  */
-public class ThieveCharacter extends AbstractPlayerCharacter {
-    public ThieveCharacter(@NotNull String name, int healthPoints, int defensePoints,
+public class Thief extends AbstractPlayerCharacter {
+    public Thief(@NotNull String name, int healthPoints, int defensePoints,
                            @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
     }
 
     @Override
     public String getCharacterClass() {
-        return "Thieve";
+        return "Thief";
     }
 }
