@@ -23,7 +23,10 @@ public interface ICharacter {
    * Sets this character's HP.
    */
   void setHealthPoints(int healthPoints);
-
+  /**
+   * Method to wait for character's turn.
+   */
+  public void waitTurn();
   /**
    * We should add some methods that every character should do like  atk, walk, etc.
    */

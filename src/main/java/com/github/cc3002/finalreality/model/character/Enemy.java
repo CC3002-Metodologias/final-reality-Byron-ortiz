@@ -43,20 +43,4 @@ public class Enemy extends AbstractCharacter {
   public int getWeight() {
     return weight;
   }
-
-  @Override
-  public boolean equals(final Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Enemy)) {
-      return false;
-    }
-    final Enemy enemy = (Enemy) o;
-    return getWeight() == enemy.getWeight();
-  }
-  @Override
-  public int hashCode() {
-    return Objects.hash(getWeight());
-  }
 }
