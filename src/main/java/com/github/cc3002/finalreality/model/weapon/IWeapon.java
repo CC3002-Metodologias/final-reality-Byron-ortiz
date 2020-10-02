@@ -17,6 +17,10 @@ public interface IWeapon {
      */
     public String getType();
     /**
+     * Returns the damage of a weapon, could be magicDamage or damage.
+     */
+    public int getDamage();
+    /**
      * We should add some other common methods for all weapons.
      */
 

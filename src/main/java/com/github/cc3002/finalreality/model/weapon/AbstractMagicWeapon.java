@@ -14,10 +14,9 @@ public abstract class AbstractMagicWeapon extends AbstractWeapon {
     /**
      * Returns the magicDamage of a MagicWeapon
      */
-    public int getMagicDamage() {
+    @Override
+    public int getDamage() {
         return this.magicDamage;
     }
 
-    @Override
-    public abstract String getType();
 }

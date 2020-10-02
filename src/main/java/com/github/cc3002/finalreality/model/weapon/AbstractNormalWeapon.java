@@ -15,10 +15,8 @@ public abstract class AbstractNormalWeapon extends AbstractWeapon{
     /**
      * Returns the damage of a normal Weapon
      */
+    @Override
     public int getDamage() {
         return this.damage;
     }
-
-    @Override
-    public abstract String getType();
 }

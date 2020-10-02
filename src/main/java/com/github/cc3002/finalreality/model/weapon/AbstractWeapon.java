@@ -30,8 +30,5 @@ public abstract class AbstractWeapon implements IWeapon {
     return this.weight;
   }
 
-  @Override
-  public abstract String getType();
-
 
 }
