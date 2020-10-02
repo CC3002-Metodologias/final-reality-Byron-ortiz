@@ -7,15 +7,14 @@ package com.github.cc3002.finalreality.model.weapon;
 public abstract class AbstractMagicWeapon extends AbstractWeapon {
     private final int magicDamage;
 
-    public AbstractMagicWeapon(String name, int weight, int magicDamage) {
-        super(name, weight);
+    public AbstractMagicWeapon(String name, int weight, int magicDamage, int damage) {
+        super(name, weight, damage);
         this.magicDamage = magicDamage;
     }
     /**
-     * Returns the magicDamage of a MagicWeapon
+     * Returns the magicDamage of a MagicWeapon.
      */
-    @Override
-    public int getDamage() {
+    public int getMagicDamage() {
         return this.magicDamage;
     }
 
