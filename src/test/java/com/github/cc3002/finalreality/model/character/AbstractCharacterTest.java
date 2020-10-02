@@ -3,7 +3,11 @@ package com.github.cc3002.finalreality.model.character;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+<<<<<<< HEAD
 import com.github.cc3002.finalreality.model.weapon.Weapon;
+=======
+import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
+>>>>>>> origin/dev
 import com.github.cc3002.finalreality.model.weapon.WeaponType;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,11 @@ public abstract class AbstractCharacterTest {
 
   protected BlockingQueue<ICharacter> turns;
   protected List<ICharacter> testCharacters;
+<<<<<<< HEAD
   protected Weapon testWeapon;
+=======
+  protected AbstractWeapon testWeapon;
+>>>>>>> origin/dev
 
   /**
    * Checks that the character waits the appropriate amount of time for it's turn.
@@ -63,7 +71,11 @@ public abstract class AbstractCharacterTest {
 
   protected void basicSetUp() {
     turns = new LinkedBlockingQueue<>();
+<<<<<<< HEAD
     testWeapon = new Weapon("Test", 15, 10, WeaponType.AXE);
+=======
+    testWeapon = new AbstractWeapon("Test", 15, 10, WeaponType.AXE);
+>>>>>>> origin/dev
     testCharacters = new ArrayList<>();
   }
 }
