@@ -1,5 +1,7 @@
 package com.github.cc3002.finalreality.model.weapon;
 
+import java.util.Objects;
+
 /**
  * A class that holds all the information of a weapon.
  *
@@ -34,4 +36,19 @@ public abstract class AbstractWeapon implements IWeapon {
     return this.damage;
   }
 
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    IWeapon that = (IWeapon) o;
+    return getWeight() == that.getWeight() &&
+            getDamage() == that.getDamage() &&
+            getName().equals(that.getName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getName(), getWeight(), getDamage());
+  }
 }

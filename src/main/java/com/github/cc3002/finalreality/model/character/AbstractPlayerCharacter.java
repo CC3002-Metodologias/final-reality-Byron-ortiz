@@ -14,21 +14,11 @@ import org.jetbrains.annotations.NotNull;
  * @author Ignacio Slater Muñoz.
  * @author <Byron Ortiz>
  */
-public abstract class AbstractPlayerCharacter extends AbstractCharacter {
+public abstract class AbstractPlayerCharacter extends AbstractCharacter implements IPCharacter {
 
   /**
    * Creates a new abstract class to normal playable characters.
    *
-   * @param name
-   * the character's name
-   * @param turnsQueue
-   * the queue with the characters waiting for their turn
-   * @param healthPoints
-   * the health's character
-   * @param defensePoints
-   * the defensePoints of a character
-   * @param equippedWeapon
-   * character's equipped weapon
    */
   private IWeapon equippedWeapon = null;
 
@@ -45,6 +35,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter {
   /**
    * returns the character's equippedWeapon
    */
+  @Override
   public IWeapon getEquippedWeapon() {
     return this.equippedWeapon;
   }

@@ -6,6 +6,13 @@ public class Knife extends AbstractWeapon {
     }
 
     @Override
+    public boolean equals(final Object o) {
+        if (!(o instanceof Knife)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+    @Override
     public String getType() {
         return "Knife";
     }

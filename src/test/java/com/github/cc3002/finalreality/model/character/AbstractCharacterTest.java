@@ -1,20 +1,15 @@
 package com.github.cc3002.finalreality.model.character;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-<<<<<<< HEAD
-import com.github.cc3002.finalreality.model.weapon.Weapon;
-=======
-import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
->>>>>>> origin/dev
-import com.github.cc3002.finalreality.model.weapon.WeaponType;
+import com.github.cc3002.finalreality.model.weapon.Axe;
+import com.github.cc3002.finalreality.model.weapon.IWeapon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Abstract class containing the common tests for all the types of characters.
@@ -26,12 +21,12 @@ import org.junit.jupiter.api.Test;
 public abstract class AbstractCharacterTest {
 
   protected BlockingQueue<ICharacter> turns;
-  protected List<ICharacter> testCharacters;
-<<<<<<< HEAD
-  protected Weapon testWeapon;
-=======
-  protected AbstractWeapon testWeapon;
->>>>>>> origin/dev
+  protected List<IPCharacter> testCharacters;
+  protected List<ICharacter> testChar;
+  protected IWeapon testWeapon;
+  protected String CH_NAME;
+  protected static int DFP;
+  protected static int HPP;
 
   /**
    * Checks that the character waits the appropriate amount of time for it's turn.
@@ -39,8 +34,11 @@ public abstract class AbstractCharacterTest {
   @Test
   void waitTurnTest() {
     Assertions.assertTrue(turns.isEmpty());
-    tryToEquip(testCharacters.get(0));
-    testCharacters.get(0).waitTurn();
+    if (testCharacters.size() != 0) {
+      tryToEquip(testCharacters.get(0));
+    }
+    testChar.addAll(testCharacters);
+    testChar.get(0).waitTurn();
     try {
       // Thread.sleep is not accurate so this values may be changed to adjust the
       // acceptable error margin.
@@ -49,20 +47,20 @@ public abstract class AbstractCharacterTest {
       Assertions.assertEquals(0, turns.size());
       Thread.sleep(200);
       Assertions.assertEquals(1, turns.size());
-      Assertions.assertEquals(testCharacters.get(0), turns.peek());
+      Assertions.assertEquals(testChar.get(0), turns.peek());
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
   }
 
-  private void tryToEquip(ICharacter character) {
-    character.equip(testWeapon);
+  private void tryToEquip(IPCharacter character) {
+    character.equipWeapon(testWeapon);
   }
 
   protected void checkConstruction(final ICharacter expectedCharacter,
-      final ICharacter testEqualCharacter,
-      final ICharacter sameClassDifferentCharacter,
-      final ICharacter differentClassCharacter) {
+                                   final ICharacter testEqualCharacter,
+                                   final ICharacter sameClassDifferentCharacter,
+                                   final ICharacter differentClassCharacter) {
     assertEquals(expectedCharacter, testEqualCharacter);
     assertNotEquals(sameClassDifferentCharacter, testEqualCharacter);
     assertNotEquals(testEqualCharacter, differentClassCharacter);
@@ -71,11 +69,30 @@ public abstract class AbstractCharacterTest {
 
   protected void basicSetUp() {
     turns = new LinkedBlockingQueue<>();
-<<<<<<< HEAD
-    testWeapon = new Weapon("Test", 15, 10, WeaponType.AXE);
-=======
-    testWeapon = new AbstractWeapon("Test", 15, 10, WeaponType.AXE);
->>>>>>> origin/dev
+    testWeapon = new Axe("Test", 15, 10);
+    CH_NAME = "Cloud";
+    HPP = 10;
+    DFP = 10;
     testCharacters = new ArrayList<>();
+    testChar = new ArrayList<>();
   }
+  //  on the below tests, could be any type of character
+  @Test
+  void hppSetGetTest() {
+    var character = new Engineer(CH_NAME, HPP, DFP, turns,
+            null);
+    int setHPP = 0;
+    assertEquals(HPP, character.getHealthPoints());
+    character.setHealthPoints(setHPP);
+    assertEquals(setHPP, character.getHealthPoints());
+  }
+  @Test
+  void equipWeaponTest() {
+    var character = new Engineer(CH_NAME, HPP, DFP, turns, null);
+    assertNull(character.getEquippedWeapon());
+    character.equipWeapon(testWeapon);
+    assertEquals(testWeapon, character.getEquippedWeapon());
+  }
+
+
 }

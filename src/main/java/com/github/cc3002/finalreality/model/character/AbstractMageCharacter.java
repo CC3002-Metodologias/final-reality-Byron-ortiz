@@ -1,7 +1,7 @@
 package com.github.cc3002.finalreality.model.character;
 
 
-import com.github.cc3002.finalreality.model.weapon.AbstractWeapon;
+import com.github.cc3002.finalreality.model.weapon.IWeapon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.BlockingQueue;
@@ -17,29 +17,15 @@ public abstract class  AbstractMageCharacter extends AbstractPlayerCharacter {
     /**
      * Creates a new abstract class to all mage  characters.
      *
-     * @param name
-     *     the character's name
-     * @param turnsQueue
-     *     the queue with the characters waiting for their turn
-     * @param healthPoints
-     *     the health's character
-     * @param defensePoints
-     *     the defensePoints of a character
-     * @param equippedWeapon
-     *     character's equipped weapon
-     * @param equippedSpell
-     *     mage's equipped spell
-     * @param mana
-     *     mage's energy to summon spells
      */
-    private Spell equippedSpell = null;
+    //private Spell equippedSpell = null;
     private int mana;
 
     public AbstractMageCharacter(@NotNull String name, int healthPoints, int defensePoints,
-                                 @NotNull BlockingQueue<ICharacter> turnsQueue, AbstractWeapon weapon,
-                                 Spell equippedSpell, int mana) {
+                                 @NotNull BlockingQueue<ICharacter> turnsQueue, IWeapon weapon,
+                                 /*Spell equippedSpell*/ int mana) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
-        this.equippedSpell = equippedSpell;
+        //this.equippedSpell = equippedSpell;
         this.mana = mana;
     }
 
@@ -49,17 +35,14 @@ public abstract class  AbstractMageCharacter extends AbstractPlayerCharacter {
     /**
      * returns the character's equippedSpell
      */
-    public Spell getEquippedSpell() {
-        return equippedSpell;
-    }
+    //public Spell getEquippedSpell() {return equippedSpell;}
     /**
      * equips a spell to some mage character (i think this method will change in the future
      * because of the limitations of every mage to equip spells of
      * different types, but i dont know how to do it right now)
      */
-    public void equipSpell(Spell equippedSpell) {
-        this.equippedSpell = equippedSpell;
-    }
+    // public void equipSpell(Spell equippedSpell) {this.equippedSpell = equippedSpell;}
+
 
     /**
      * returns the character's mana

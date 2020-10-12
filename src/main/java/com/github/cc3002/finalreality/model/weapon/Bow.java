@@ -6,6 +6,13 @@ public class Bow extends AbstractWeapon {
     }
 
     @Override
+    public boolean equals(final Object o) {
+        if (!(o instanceof Bow)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+    @Override
     public String getType() {
         return "Bow";
     }
