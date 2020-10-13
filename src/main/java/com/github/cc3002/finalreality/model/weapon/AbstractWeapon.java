@@ -10,45 +10,42 @@ import java.util.Objects;
  */
 public abstract class AbstractWeapon implements IWeapon {
 
-  private final String name;
-  private final int weight;
-  private final int damage;
+    private final String name;
+    private final int weight;
+    private final int damage;
 
-  /**
-   * Class that holds the properties for a weapon with a name and weight.
-   *
-   */
-  public AbstractWeapon(final String name, final int weight, int damage) {
-    this.name = name;
-    this.weight = weight;
-    this.damage = damage;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public int getWeight() {
-    return this.weight;
-  }
-  @Override
-  public int getDamage() {
-    return this.damage;
-  }
-
-  @Override
-  public boolean equals(final Object o) {
-    if (this == o) {
-      return true;
+    public AbstractWeapon(final String name, final int weight, int damage) {
+        this.name = name;
+        this.weight = weight;
+        this.damage = damage;
     }
-    IWeapon that = (IWeapon) o;
-    return getWeight() == that.getWeight() &&
-            getDamage() == that.getDamage() &&
-            getName().equals(that.getName());
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(getName(), getWeight(), getDamage());
-  }
+    public String getName() {
+        return this.name;
+    }
+
+    public int getWeight() {
+        return this.weight;
+    }
+
+    @Override
+    public int getDamage() {
+        return this.damage;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        IWeapon that = (IWeapon) o;
+        return getWeight() == that.getWeight() &&
+                getDamage() == that.getDamage() &&
+                getName().equals(that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getWeight(), getDamage());
+    }
 }

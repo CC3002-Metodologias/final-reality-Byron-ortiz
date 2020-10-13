@@ -17,6 +17,7 @@ public class Knight extends AbstractPlayerCharacter {
                   IWeapon weapon) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
     }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Knight)) {
@@ -24,9 +25,9 @@ public class Knight extends AbstractPlayerCharacter {
         }
         return super.equals(o);
     }
+
     @Override
     public String getCharacterClass() {
         return "Knight";
     }
-
 }

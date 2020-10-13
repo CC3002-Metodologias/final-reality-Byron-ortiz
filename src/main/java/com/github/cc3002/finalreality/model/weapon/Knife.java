@@ -12,6 +12,7 @@ public class Knife extends AbstractWeapon {
         }
         return super.equals(o);
     }
+
     @Override
     public String getType() {
         return "Knife";

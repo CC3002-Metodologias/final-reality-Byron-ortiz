@@ -9,33 +9,44 @@ package com.github.cc3002.finalreality.model.character;
  */
 public interface ICharacter {
 
-  /**
-   * Returns this character's name.
-   */
-  String getName();
+    /**
+     * Returns this character's name.
+     */
+    String getName();
 
-  /**
-   * Returns this character's HP.
-   */
-  public int getHealthPoints();
-  /**
-   * Sets this character's HP.
-   */
-  void setHealthPoints(int healthPoints);
-  /**
-   * Method to wait for character's turn.
-   */
-  public void waitTurn();
+    /**
+     * Returns this character's HP.
+     */
+    int getHealthPoints();
 
-  public int getDefensePoints();
+    /**
+     * Sets this character's HP.
+     */
+    void setHealthPoints(int healthPoints);
 
-  @Override
-  boolean equals(Object o);
+    /**
+     * Method to wait for character's turn.
+     */
+    void waitTurn();
 
-  void addToQueue();
+    /**
+     * Method to access character's defense points.
+     */
+    int getDefensePoints();
 
-  /**
-   * We should add some methods that every character should do like  atk, walk, etc.
-   */
+    /**
+     * Overrides equals method from object.
+     */
+    @Override
+    boolean equals(Object o);
+
+    /**
+     * Adds a character to turns Queue.
+     */
+    void addToQueue();
+
+     //
+     // We should add some methods that every character should do like attack, etc.
+     //
 
 }

@@ -13,6 +13,7 @@ public class Axe extends AbstractWeapon {
         }
         return super.equals(o);
     }
+
     @Override
     public String getType() {
         return "Axe";

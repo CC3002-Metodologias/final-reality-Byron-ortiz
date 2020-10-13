@@ -2,16 +2,27 @@ package com.github.cc3002.finalreality.model.character;
 
 import com.github.cc3002.finalreality.model.weapon.IWeapon;
 
+/**
+ * This represents a playable character from the game.
+ * A playable character can only be controlled by a person.
+ * This interface will be util to define the party's.
+ *
+ * @author <Byron Ortiz>
+ */
 public interface IPCharacter extends ICharacter {
 
     /**
      * returns the character's equippedWeapon
      */
-    public IWeapon getEquippedWeapon();
+    IWeapon getEquippedWeapon();
+
     /**
      * equips a weapon to some character
      */
-    public void equipWeapon(IWeapon weapon);
+    void equipWeapon(IWeapon weapon);
 
-    public String getCharacterClass();
+    /**
+     * Returns the character's type.
+     */
+    String getCharacterClass();
 }

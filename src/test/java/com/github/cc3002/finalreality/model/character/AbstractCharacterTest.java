@@ -24,9 +24,9 @@ public abstract class AbstractCharacterTest {
   protected List<IPCharacter> testCharacters;
   protected List<ICharacter> testChar;
   protected IWeapon testWeapon;
-  protected String CH_NAME;
-  protected static int DFP;
-  protected static int HPP;
+  protected static final String CH_NAME = "Cloud";
+  protected int DFP = 10;
+  protected int HPP = 10;
 
   /**
    * Checks that the character waits the appropriate amount of time for it's turn.
@@ -70,9 +70,6 @@ public abstract class AbstractCharacterTest {
   protected void basicSetUp() {
     turns = new LinkedBlockingQueue<>();
     testWeapon = new Axe("Test", 15, 10);
-    CH_NAME = "Cloud";
-    HPP = 10;
-    DFP = 10;
     testCharacters = new ArrayList<>();
     testChar = new ArrayList<>();
   }

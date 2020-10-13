@@ -16,6 +16,7 @@ public class Engineer extends AbstractPlayerCharacter {
                     @NotNull BlockingQueue<ICharacter> turnsQueue, IWeapon weapon) {
         super(name, healthPoints, defensePoints, turnsQueue, weapon);
     }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Engineer)) {
@@ -23,6 +24,9 @@ public class Engineer extends AbstractPlayerCharacter {
         }
         return super.equals(o);
     }
+
     @Override
-    public String getCharacterClass() {return "Engineer"; }
+    public String getCharacterClass() {
+        return "Engineer";
+    }
 }

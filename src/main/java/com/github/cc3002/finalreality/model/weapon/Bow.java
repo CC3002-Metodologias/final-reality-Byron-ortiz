@@ -12,6 +12,7 @@ public class Bow extends AbstractWeapon {
         }
         return super.equals(o);
     }
+
     @Override
     public String getType() {
         return "Bow";

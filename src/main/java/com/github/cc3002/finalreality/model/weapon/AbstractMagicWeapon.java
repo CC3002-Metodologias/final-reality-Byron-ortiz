@@ -4,7 +4,6 @@ import java.util.Objects;
 
 /**
  * Class that holds the properties for a magic weapon with magic damage.
- *
  */
 public abstract class AbstractMagicWeapon extends AbstractWeapon {
     private final int magicDamage;
@@ -13,6 +12,7 @@ public abstract class AbstractMagicWeapon extends AbstractWeapon {
         super(name, weight, damage);
         this.magicDamage = magicDamage;
     }
+
     /**
      * Returns the magicDamage of a MagicWeapon.
      */
@@ -24,7 +24,7 @@ public abstract class AbstractMagicWeapon extends AbstractWeapon {
     public boolean equals(Object o) {
         AbstractMagicWeapon that = (AbstractMagicWeapon) o;
         return getMagicDamage() == that.getMagicDamage() &&
-                super.equals(o) ;
+                super.equals(o);
     }
 
     @Override

@@ -13,10 +13,11 @@ import java.util.concurrent.BlockingQueue;
  */
 public class WhiteMage extends AbstractMageCharacter {
     public WhiteMage(@NotNull String name, int healthPoints, int defensePoints,
-                     @NotNull BlockingQueue<ICharacter> turnsQueue, IWeapon weapon,
-                     /*Spell equippedSpell,*/ int mana) {
-        super(name, healthPoints, defensePoints, turnsQueue, weapon, /*equippedSpell,*/ mana);
+                     @NotNull BlockingQueue<ICharacter> turnsQueue,
+                     IWeapon weapon, int mana) {
+        super(name, healthPoints, defensePoints, turnsQueue, weapon, mana);
     }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof WhiteMage)) {
@@ -24,6 +25,7 @@ public class WhiteMage extends AbstractMageCharacter {
         }
         return super.equals(o);
     }
+
     @Override
     public String getCharacterClass() {
         return "White Mage";
