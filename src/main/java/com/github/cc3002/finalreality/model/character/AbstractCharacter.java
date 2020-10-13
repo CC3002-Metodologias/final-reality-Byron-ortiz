@@ -28,44 +28,32 @@ public abstract class AbstractCharacter implements ICharacter {
         this.defensePoints = defensePoints;
     }
 
-    /**
-     * abstract method to wait for character's turn
-     */
+    @Override
     public abstract void waitTurn();
 
-    /**
-     * Adds this character to turns queue.
-     */
+
     @Override
     public void addToQueue() {
         turnsQueue.add(this);
         scheduledExecutor.shutdown();
     }
 
-    /**
-     * returns the character's name.
-     */
+    @Override
     public String getName() {
         return this.name;
     }
 
-    /**
-     * returns the character's HP.
-     */
+    @Override
     public int getHealthPoints() {
         return this.healthPoints;
     }
 
-    /**
-     * resets the character's HP.
-     */
+    @Override
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
-    /**
-     * returns the character's DFP.
-     */
+
     @Override
     public int getDefensePoints() {
         return defensePoints;

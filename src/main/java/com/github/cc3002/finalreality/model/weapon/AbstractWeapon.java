@@ -20,10 +20,12 @@ public abstract class AbstractWeapon implements IWeapon {
         this.damage = damage;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
 
+    @Override
     public int getWeight() {
         return this.weight;
     }

@@ -23,9 +23,7 @@ public interface IWeapon {
      * Returns the damage of a weapon, could be magicDamage or damage.
      */
     int getDamage();
-    /**
-     * We should add some other common methods for all weapons.
-     */
 
 
+    // We should add some other common methods for all weapons.
 }

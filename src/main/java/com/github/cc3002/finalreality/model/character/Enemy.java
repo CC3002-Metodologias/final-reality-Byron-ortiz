@@ -29,9 +29,7 @@ public class Enemy extends AbstractCharacter {
         this.attackPoints = attackPoints;
     }
 
-    /**
-     * puts the character waiting for they turn.
-     */
+    @Override
     public void waitTurn() {
         scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutor.schedule(this::addToQueue, this.getWeight() / 10, TimeUnit.SECONDS);

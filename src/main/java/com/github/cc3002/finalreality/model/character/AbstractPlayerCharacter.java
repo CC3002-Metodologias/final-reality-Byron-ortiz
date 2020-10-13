@@ -23,29 +23,19 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
         this.equippedWeapon = weapon;
     }
 
-    /**
-     * Returns the character's type.
-     */
+    @Override
     public abstract String getCharacterClass();
 
-    /**
-     * Returns the character's equippedWeapon
-     */
     @Override
     public IWeapon getEquippedWeapon() {
         return this.equippedWeapon;
     }
 
-    /**
-     * Equips a weapon to some character.
-     */
+    @Override
     public void equipWeapon(IWeapon weapon) {
         this.equippedWeapon = weapon;
     }
 
-    /**
-     * Puts the character waiting for they turn.
-     */
     @Override
     public void waitTurn() {
         scheduledExecutor = Executors.newSingleThreadScheduledExecutor();

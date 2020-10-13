@@ -12,12 +12,12 @@ import com.github.cc3002.finalreality.model.weapon.IWeapon;
 public interface IPCharacter extends ICharacter {
 
     /**
-     * returns the character's equippedWeapon
+     * Returns the character's equippedWeapon.
      */
     IWeapon getEquippedWeapon();
 
     /**
-     * equips a weapon to some character
+     * Equips a weapon to some character.
      */
     void equipWeapon(IWeapon weapon);
 
