@@ -1,22 +1,13 @@
 package com.github.cc3002.finalreality.model.character;
 
-import com.github.cc3002.finalreality.model.character.player.CharacterClass;
-import com.github.cc3002.finalreality.model.weapon.Weapon;
-
 /**
  * This represents a character from the game.
  * A character can be controlled by the player or by the CPU (an enemy).
  *
  * @author Ignacio Slater Muñoz.
- * @author <Your name>
+ * @author <Byron Ortiz>
  */
 public interface ICharacter {
-
-  /**
-   * Sets a scheduled executor to make this character (thread) wait for {@code speed / 10}
-   * seconds before adding the character to the queue.
-   */
-  void waitTurn();
 
   /**
    * Returns this character's name.
@@ -24,17 +15,27 @@ public interface ICharacter {
   String getName();
 
   /**
-   * Equips a weapon to the character.
+   * Returns this character's HP.
    */
-  void equip(Weapon weapon);
+  public int getHealthPoints();
+  /**
+   * Sets this character's HP.
+   */
+  void setHealthPoints(int healthPoints);
+  /**
+   * Method to wait for character's turn.
+   */
+  public void waitTurn();
+
+  public int getDefensePoints();
+
+  @Override
+  boolean equals(Object o);
+
+  void addToQueue();
 
   /**
-   * Return this character's equipped weapon.
+   * We should add some methods that every character should do like  atk, walk, etc.
    */
-  Weapon getEquippedWeapon();
 
-  /**
-   * Returns this character's class.
-   */
-  CharacterClass getCharacterClass();
 }
