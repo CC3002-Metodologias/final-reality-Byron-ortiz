@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WhiteMageTest extends AbstractCharacterTest {
+
     private final int MANA = 22;
+    private WhiteMage testWhiteMage;
 
     @BeforeEach
     void setUp() {
         super.basicSetUp();
-        var expectedWhiteMage = new WhiteMage(CH_NAME, HPP, DFP, turns,
+        testWhiteMage = new WhiteMage(CH_NAME, HPP, DFP, turns,
                 testWeapon, MANA);
-        testCharacters.add(expectedWhiteMage);
+        testCharacters.add(testWhiteMage);
     }
     @Test
     void constructorTest() {
         var expectedWhiteMage = new WhiteMage(CH_NAME, HPP, DFP, turns,
-                testWeapon, MANA);
-        var testWhiteMage = new WhiteMage(CH_NAME, HPP, DFP, turns,
                 testWeapon, MANA);
         var diffWhiteMage = new WhiteMage("Sephirot", HPP, DFP, turns,
                 testWeapon, MANA);
@@ -31,18 +31,14 @@ public class WhiteMageTest extends AbstractCharacterTest {
 
     @Test
     void manaSetGetTest() {
-        var character = new WhiteMage(CH_NAME, HPP, DFP, turns,
-                null, MANA);
         int setMana = 0;
-        assertEquals(MANA, character.getMana());
-        character.setMana(setMana);
-        assertEquals(setMana, character.getMana());
+        assertEquals(MANA, testWhiteMage.getMana());
+        testWhiteMage.setMana(setMana);
+        assertEquals(setMana, testWhiteMage.getMana());
     }
     @Test
     void getClassTest(){
         String characterClass = "White Mage";
-        var character = new WhiteMage(CH_NAME, HPP, DFP, turns,
-                null, MANA);
-        assertEquals(characterClass, character.getCharacterClass());
+        assertEquals(characterClass, testWhiteMage.getCharacterClass());
     }
 }

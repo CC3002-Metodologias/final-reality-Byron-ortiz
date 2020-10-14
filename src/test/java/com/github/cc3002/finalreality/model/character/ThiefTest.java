@@ -6,16 +6,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ThiefTest extends AbstractCharacterTest {
+
+    private Thief testThief;
+
     @BeforeEach
     void setUp() {
         super.basicSetUp();
-        var expectedThief = new Thief(CH_NAME, HPP, DFP, turns, testWeapon);
-        testCharacters.add(expectedThief);
+        testThief = new Thief(CH_NAME, HPP, DFP, turns, testWeapon);
+        testCharacters.add(testThief);
     }
     @Test
     void constructorTest() {
         var expectedThief = new Thief(CH_NAME, HPP, DFP, turns, testWeapon);
-        var testThief = new Thief(CH_NAME, HPP, DFP, turns, testWeapon);
         var diffThief = new Thief("Sephirot", HPP, DFP, turns, testWeapon);
         var difClassCharacter = new Knight(CH_NAME, HPP, DFP, turns, testWeapon);
         checkConstruction(expectedThief, testThief, diffThief, difClassCharacter);
@@ -24,8 +26,6 @@ public class ThiefTest extends AbstractCharacterTest {
     @Test
     void getClassTest(){
         String characterClass = "Thief";
-        var character = new Thief(CH_NAME, HPP, DFP, turns,
-                null);
-        assertEquals(characterClass, character.getCharacterClass());
+        assertEquals(characterClass, testThief.getCharacterClass());
     }
 }
