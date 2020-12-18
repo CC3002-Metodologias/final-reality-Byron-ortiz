@@ -1,5 +1,8 @@
-package com.github.cc3002.finalreality.model.weapon;
+package com.github.cc3002.finalreality.model.weapon.weapontests;
 
+import com.github.cc3002.finalreality.model.weapon.AbstractWeaponTest;
+import com.github.cc3002.finalreality.model.weapon.magicweapon.Wand;
+import com.github.cc3002.finalreality.model.weapon.normalweapon.Sword;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
 package com.github.cc3002.finalreality.model.character;
 
+import com.github.cc3002.finalreality.controller.combathandlers.IEventHandler;
+
 /**
  * This represents a character from the game.
  * A character can be controlled by the player or by the CPU (an enemy).
@@ -10,43 +12,46 @@ package com.github.cc3002.finalreality.model.character;
 public interface ICharacter {
 
     /**
-     * Returns this character's name.
+     * GETTERS, Returns the character's getAttribute.
      */
     String getName();
-
-    /**
-     * Returns this character's HP.
-     */
     int getHealthPoints();
+    int getDamage();
+    int getDefensePoints();
+    boolean isAlive();
+    int getWeight();
+    String getCharacterClass();
+
+    // ------------------------------------------------
 
     /**
-     * Sets this character's HP.
-     */
-    void setHealthPoints(int healthPoints);
-
-    /**
-     * Method to wait for character's turn.
+     * Puts the character wait for its turn.
      */
     void waitTurn();
-
-    /**
-     * Method to access character's defense points.
-     */
-    int getDefensePoints();
-
-    /**
-     * Overrides equals method from object.
-     */
-    @Override
-    boolean equals(Object o);
-
     /**
      * Adds a character to turns Queue.
      */
     void addToQueue();
 
-     //
-     // We should add some methods that every character should do like attack, etc.
-     //
+
+    /**
+     * methods to attack with double dispatch for more extensibility.
+     */
+    void attack(ICharacter defender);
+    void receiveAttack(ICharacter attacker);
+
+    // -------------------------------------------------------------------
+
+    /**
+     * a character dies, fire deathCharacter event.
+     */
+    void die();
+
+    /**
+     * Methods to manage the listeners, at moment to know when a character dies.
+     */
+    void addListener(IEventHandler handler);
+    void cleanListeners(IEventHandler handler);
+
 
 }

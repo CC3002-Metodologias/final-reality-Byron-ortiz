@@ -1,7 +1,10 @@
-package com.github.cc3002.finalreality.model.character;
+package com.github.cc3002.finalreality.model.character.enemy;
 
+import com.github.cc3002.finalreality.model.character.AbstractCharacter;
+import com.github.cc3002.finalreality.model.character.ICharacter;
 import org.jetbrains.annotations.NotNull;
 
+import java.beans.PropertyChangeSupport;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -35,11 +38,9 @@ public class Enemy extends AbstractCharacter {
         scheduledExecutor.schedule(this::addToQueue, this.getWeight() / 10, TimeUnit.SECONDS);
     }
 
-    /**
-     * Returns the character's ATK points.
-     */
-    public int getAttackPoints() {
-        return attackPoints;
+    @Override
+    public int getDamage() {
+        return this.attackPoints;
     }
 
     /**
@@ -50,21 +51,16 @@ public class Enemy extends AbstractCharacter {
     }
 
     @Override
+    public String getCharacterClass() {
+        return "Enemy";
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (!(o instanceof Enemy)) {
             return false;
         }
-        Enemy that = (Enemy) o;
-        return super.equals(o) &&
-                getWeight() == that.getWeight() &&
-                getDefensePoints() == that.getDefensePoints() &&
-                getHealthPoints() == that.getHealthPoints() &&
-                getAttackPoints() == that.getAttackPoints();
+        return super.equals(o);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getWeight(), getDefensePoints(), getHealthPoints(),
-                getAttackPoints());
-    }
 }

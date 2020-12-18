@@ -1,5 +1,10 @@
 package com.github.cc3002.finalreality.model.weapon;
 
+import com.github.cc3002.finalreality.model.character.IPCharacter;
+import com.github.cc3002.finalreality.model.character.playercharacter.*;
+import com.github.cc3002.finalreality.model.character.playercharacter.magecharacter.BlackMage;
+import com.github.cc3002.finalreality.model.character.playercharacter.magecharacter.WhiteMage;
+
 import java.util.Objects;
 
 /**
@@ -33,6 +38,36 @@ public abstract class AbstractWeapon implements IWeapon {
     @Override
     public int getDamage() {
         return this.damage;
+    }
+
+    public void displayEquipError(IPCharacter character) {
+        System.out.println( character.getCharacterClass() +
+                " can not equip weapon type " + this.getType());
+    }
+
+    @Override
+    public void equipToKnight(Knight character) {
+        displayEquipError(character);
+    }
+
+    @Override
+    public void equipToThief(Thief character) {
+        displayEquipError(character);
+    }
+
+    @Override
+    public void equipToEngineer(Engineer character) {
+        displayEquipError(character);
+    }
+
+    @Override
+    public void equipToWhiteMage(WhiteMage character) {
+        displayEquipError(character);
+    }
+
+    @Override
+    public void equipToBlackMage(BlackMage character) {
+        displayEquipError(character);
     }
 
     @Override

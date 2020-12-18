@@ -29,7 +29,10 @@ this approach to get advantages of the inheritance
 and to make our program more extensible.
 
 At moment, we've developed the model for weapons and
-characters. 
+characters.
+
+Characters can equip only a certain type of weapon
+for more detail see the project description. 
  
 Characters
 -------
@@ -94,5 +97,11 @@ Concrete weapons:
 NormalWeapons -> ```Axe```, ```Knife```, ```Bow```, ```Sword```. Extends from AbstractWeapon.
 
 MagicWeapons -> ```Wand```. Extends from AbstractMagicWeapons.
+
+Controller
+-------
+Manage the model, can instantiate characters and weapons
+and controls the flow of the game.
+
 
 ---

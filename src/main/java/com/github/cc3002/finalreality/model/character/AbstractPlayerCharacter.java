@@ -17,6 +17,7 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
 
     private IWeapon equippedWeapon;
 
+
     public AbstractPlayerCharacter(@NotNull String name, int healthPoints, int defensePoints,
                                    @NotNull BlockingQueue<ICharacter> turnsQueue, IWeapon weapon) {
         super(turnsQueue, name, healthPoints, defensePoints);
@@ -32,15 +33,39 @@ public abstract class AbstractPlayerCharacter extends AbstractCharacter implemen
     }
 
     @Override
-    public void equipWeapon(IWeapon weapon) {
-        this.equippedWeapon = weapon;
+    public int getDamage() {
+        if (getEquippedWeapon()!=null) {
+            return getEquippedWeapon().getDamage();
+        }
+        return 0;
     }
 
     @Override
-    public void waitTurn() {
-        scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-        scheduledExecutor.schedule(this::addToQueue, equippedWeapon.getWeight() / 10, TimeUnit.SECONDS);
+    public int getWeight() {
+        return equippedWeapon.getWeight();
     }
+
+    public void setWeapon(IWeapon weapon) {
+        if (isAlive()) {
+            equippedWeapon = weapon;
+        }
+        else {
+            System.out.println(getName() + " is out of combat" +
+                    ", can not equip weapon ");
+        }
+    }
+    public void setNullWeapon() {
+        equippedWeapon = null;
+    }
+
+    @Override
+    public boolean hasWeapon() {
+        if (equippedWeapon!=null) {
+            return true;
+        }
+        return false;
+    }
+
 }
 
 

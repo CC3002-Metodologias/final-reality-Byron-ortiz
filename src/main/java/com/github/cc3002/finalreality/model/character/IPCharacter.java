@@ -1,5 +1,6 @@
 package com.github.cc3002.finalreality.model.character;
 
+import com.github.cc3002.finalreality.model.character.ICharacter;
 import com.github.cc3002.finalreality.model.weapon.IWeapon;
 
 /**
@@ -17,12 +18,17 @@ public interface IPCharacter extends ICharacter {
     IWeapon getEquippedWeapon();
 
     /**
-     * Equips a weapon to some character.
+     * Equips a weapon to some character, calls equipWeaponTo..() methods on IWeapon for double dispatch.
      */
     void equipWeapon(IWeapon weapon);
 
     /**
-     * Returns the character's type.
+     * checks if a character has weapon
      */
-    String getCharacterClass();
+    boolean hasWeapon();
+
+    /**
+     * Set weapon to null.
+     */
+    void setNullWeapon();
 }
