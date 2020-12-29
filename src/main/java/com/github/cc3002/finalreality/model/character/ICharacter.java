@@ -50,8 +50,10 @@ public interface ICharacter {
     /**
      * Methods to manage the listeners, at moment to know when a character dies.
      */
-    void addListener(IEventHandler handler);
-    void cleanListeners(IEventHandler handler);
+    void addListenerDied(IEventHandler handler);
+    void addListenerReady(IEventHandler handler);
 
 
+    void cleanListenerDied(IEventHandler handler);
+    void cleanListenerReady(IEventHandler handler);
 }

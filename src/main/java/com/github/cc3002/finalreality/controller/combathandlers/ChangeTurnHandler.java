@@ -1,6 +1,7 @@
 package com.github.cc3002.finalreality.controller.combathandlers;
 
 import com.github.cc3002.finalreality.controller.CombatController;
+import com.github.cc3002.finalreality.controller.combatphases.WaitActionState;
 import com.github.cc3002.finalreality.model.character.ICharacter;
 
 import java.beans.PropertyChangeEvent;

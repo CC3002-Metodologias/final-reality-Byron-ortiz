@@ -1,5 +1,8 @@
 package com.github.cc3002.finalreality.controller;
 
+import com.github.cc3002.finalreality.controller.combatphases.CombatEndedPhase;
+import com.github.cc3002.finalreality.controller.combatphases.WaitActionState;
+import com.github.cc3002.finalreality.controller.combatphases.WaitFillState;
 import com.github.cc3002.finalreality.model.character.ICharacter;
 import com.github.cc3002.finalreality.model.character.enemy.Enemy;
 import com.github.cc3002.finalreality.model.character.playercharacter.Engineer;
@@ -126,8 +129,7 @@ public class ControllerTest {
         controller.createEnemy("enemy4", HP_PLAYER, DP_PLAYER, 10, 60);
         controller.createEnemy("enemy5", HP_PLAYER, DP_PLAYER, 10, 60);
         controller.putAllToWait();
-        Thread.sleep(40000);
-        controller.beginTurn();
+        Thread.sleep(20000);
         assertEquals(knight, controller.getTurnOwner());
         controller.attack(controller.getTurnOwner(), controller.getEnemyParty().get(0));
         assertEquals(10, controller.getEnemyParty().get(0).getHealthPoints());
@@ -140,19 +142,28 @@ public class ControllerTest {
         assertFalse(controller.getEnemyParty().get(2).isAlive());
         controller.attack(controller.getTurnOwner(), controller.getEnemyParty().get(3));
         assertFalse(controller.getEnemyParty().get(3).isAlive());
-        Thread.sleep(40000);
+        Thread.sleep(15000);
         controller.attack(controller.getTurnOwner(), controller.getParty().get(0));
         controller.attack(controller.getTurnOwner(), controller.getEnemyParty().get(4));
         controller.attack(controller.getTurnOwner(), controller.getEnemyParty().get(4));
         assertTrue(controller.getWin());
+        var endPhase = new CombatEndedPhase();
+        endPhase.setController(controller);
+        assertEquals(endPhase, controller.getPhase());
     }
 
     @Test
-    public void checkCombat2() throws InterruptedException {
+    public void checkCombatAndPhase() throws InterruptedException {
         IWeapon axe = controller.createAxe("knight_weapon", 10, DAMAGE);
         IWeapon bow = controller.createBow("Engineer_weapon", 20, 35);
         var knight = controller.createKnight("character1", HP_PLAYER, DP_PLAYER, axe);
         var engineer = controller.createEngineer("character2", HP_PLAYER, DP_PLAYER, bow);
+        var endPhase = new CombatEndedPhase();
+        var waitFillPhase = new WaitFillState();
+        var waitActionPhase = new WaitActionState();
+        endPhase.setController(controller);
+        waitFillPhase.setController(controller);
+        waitActionPhase.setController(controller);
         controller.addToParty(knight);
         controller.addToParty(engineer);
         controller.createEnemy("enemy1", HP_PLAYER, DP_PLAYER, 30, 5);
@@ -161,13 +172,15 @@ public class ControllerTest {
         controller.createEnemy("enemy4", HP_PLAYER, DP_PLAYER, 30, 5);
         controller.createEnemy("enemy5", HP_PLAYER, DP_PLAYER, 30, 5);
         controller.putAllToWait();
-        Thread.sleep(15000);
-        controller.beginTurn();
+        assertEquals(waitFillPhase, controller.getPhase());
+        Thread.sleep(4000);
         controller.attack(controller.getTurnOwner(), controller.getParty().get(0));
+        assertEquals(waitActionPhase, controller.getPhase());
         controller.attack(controller.getTurnOwner(), controller.getParty().get(0));
         controller.attack(controller.getTurnOwner(), controller.getParty().get(1));
         controller.attack(controller.getTurnOwner(), controller.getParty().get(1));
         assertFalse(controller.getWin());
+        assertEquals(endPhase, controller.getPhase());
     }
 
     @Test

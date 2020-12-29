@@ -1,10 +1,11 @@
 package com.github.cc3002.finalreality.controller;
 
 
-import com.github.cc3002.finalreality.controller.combathandlers.ChangeTurnHandler;
-import com.github.cc3002.finalreality.controller.combathandlers.DeathEnemyHandler;
-import com.github.cc3002.finalreality.controller.combathandlers.DeathPlayerHandler;
-import com.github.cc3002.finalreality.controller.combathandlers.IEventHandler;
+import com.github.cc3002.finalreality.controller.combathandlers.*;
+import com.github.cc3002.finalreality.controller.combatphases.CombatEndedPhase;
+import com.github.cc3002.finalreality.controller.combatphases.ICombatPhase;
+import com.github.cc3002.finalreality.controller.combatphases.WaitActionState;
+import com.github.cc3002.finalreality.controller.combatphases.WaitFillState;
 import com.github.cc3002.finalreality.model.character.ICharacter;
 import com.github.cc3002.finalreality.model.character.IPCharacter;
 import com.github.cc3002.finalreality.model.character.enemy.Enemy;
@@ -36,11 +37,13 @@ public class CombatController implements ControllerInterface {
     private IEventHandler deathPlayerHandler = new DeathPlayerHandler(this);
     private IEventHandler deathEnemyHandler = new DeathEnemyHandler(this);
     private IEventHandler changeTurnHandler = new ChangeTurnHandler(this);
+    private IEventHandler readyToPlayHandler = new ReadyToPlayHandler(this);
     private final PropertyChangeSupport turnEvent = new PropertyChangeSupport(this);
-    private ICharacter turnOwner = null;
+    private ICharacter turnOwner;
     private int playerDeaths;
     private int enemyDeaths;
     private boolean win;
+    private ICombatPhase phase;
 
     public CombatController() {
         this.turnsQueue = new LinkedBlockingQueue<>();
@@ -51,6 +54,16 @@ public class CombatController implements ControllerInterface {
         playerDeaths = 0;
         enemyDeaths = 0;
         turnEvent.addPropertyChangeListener(changeTurnHandler);
+        setPhase(new WaitFillState());
+    }
+
+    public void setPhase(ICombatPhase phase) {
+        this.phase = phase;
+        phase.setController(this);
+    }
+
+    public ICombatPhase getPhase() {
+        return phase;
     }
 
 
@@ -92,7 +105,8 @@ public class CombatController implements ControllerInterface {
     @Override
     public Enemy createEnemy(String name, int HP, int DFP, int ATK, int WEIGHT) {
         Enemy character = new Enemy(name, WEIGHT, ATK, turnsQueue, DFP, HP);
-        character.addListener(deathEnemyHandler);
+        character.addListenerDied(deathEnemyHandler);
+        character.addListenerReady(readyToPlayHandler);
         enemyParty.add(character);
         characters.add(character);
         return character;
@@ -101,7 +115,8 @@ public class CombatController implements ControllerInterface {
     @Override
     public void addToParty(ICharacter character) {
         party.add(character);
-        character.addListener(deathPlayerHandler);
+        character.addListenerDied(deathPlayerHandler);
+        character.addListenerReady(readyToPlayHandler);
     }
 
     @Override
@@ -192,8 +207,13 @@ public class CombatController implements ControllerInterface {
 
     @Override
     public void beginTurn() {
-        turnOwner = turnsQueue.poll();
-        turnEvent.firePropertyChange("begin", null, turnOwner);
+        if (!turnsQueue.isEmpty()) {
+            turnOwner = turnsQueue.poll();
+            turnEvent.firePropertyChange("begin", null, turnOwner);
+        }
+        else {
+            setPhase( new WaitFillState());
+        }
     }
 
     public ICharacter getTurnOwner() {
@@ -206,6 +226,7 @@ public class CombatController implements ControllerInterface {
     }
     public void turnBegan(ICharacter character) {
         System.out.println(character.getName()+ " began his turn\n");
+        setPhase(new WaitActionState());
     }
 
     public void countPlayerDeath() {
@@ -228,12 +249,19 @@ public class CombatController implements ControllerInterface {
         cleanListeners();
         turnsQueue.clear();
         System.out.println("You Win\n");
+        setPhase(new CombatEndedPhase());
     }
 
     public void cleanListeners() {
         turnEvent.removePropertyChangeListener(changeTurnHandler);
-        party.forEach(character -> character.cleanListeners(deathPlayerHandler));
-        enemyParty.forEach(character -> character.cleanListeners(deathEnemyHandler));
+        party.forEach(character -> {
+            character.cleanListenerDied(deathPlayerHandler);
+            character.cleanListenerReady(readyToPlayHandler);
+        });
+        enemyParty.forEach(character -> {
+            character.cleanListenerDied(deathEnemyHandler);
+            character.cleanListenerReady(readyToPlayHandler);
+        });
     }
 
     @Override
@@ -242,6 +270,7 @@ public class CombatController implements ControllerInterface {
         cleanListeners();
         turnsQueue.clear();
         System.out.println("You Lose\n");
+        setPhase(new CombatEndedPhase());
     }
 
     public boolean getWin() {

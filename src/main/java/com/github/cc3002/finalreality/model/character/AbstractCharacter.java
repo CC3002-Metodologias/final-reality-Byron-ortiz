@@ -3,6 +3,7 @@ package com.github.cc3002.finalreality.model.character;
 import com.github.cc3002.finalreality.controller.combathandlers.IEventHandler;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
@@ -25,8 +26,7 @@ public abstract class AbstractCharacter implements ICharacter {
     private final int defensePoints;
     private boolean isAlive;
     private final PropertyChangeSupport characterDiedEvent = new PropertyChangeSupport(this);
-
-
+    private final PropertyChangeSupport readyToPlayEvent = new PropertyChangeSupport(this);
 
 
     protected AbstractCharacter(@NotNull BlockingQueue<ICharacter> turnsQueue,
@@ -49,6 +49,9 @@ public abstract class AbstractCharacter implements ICharacter {
     public void addToQueue() {
         turnsQueue.add(this);
         scheduledExecutor.shutdown();
+        if (turnsQueue.size() == 1) {
+            readyToPlayEvent.firePropertyChange("size turnQueue", null, this);
+        }
     }
     @Override
     public void waitTurn() {
@@ -105,13 +108,22 @@ public abstract class AbstractCharacter implements ICharacter {
         }
     }
 
-    public void addListener(IEventHandler handler) {
+    public void addListenerDied(IEventHandler handler) {
         characterDiedEvent.addPropertyChangeListener(handler);
     }
 
+    public void addListenerReady(IEventHandler handler) {
+        readyToPlayEvent.addPropertyChangeListener(handler);
+    }
+
     @Override
-    public void cleanListeners(IEventHandler handler) {
+    public void cleanListenerDied(IEventHandler handler) {
         characterDiedEvent.removePropertyChangeListener(handler);
+    }
+
+    @Override
+    public void cleanListenerReady(IEventHandler handler) {
+        readyToPlayEvent.removePropertyChangeListener(handler);
     }
 
     @Override
